@@ -16,13 +16,14 @@ var (
 	DB_PASSWORD = GetEnv("DB_PASSWORD", "root")
 )
 
-func GetConnection() *gorm.DB {
-	sqlConnection := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME)
+var DB *gorm.DB
 
+func GetConnection() {
+	sqlConnection := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME)
 	db, err := gorm.Open("mysql", sqlConnection)
 	if err != nil {
 		panic(err)
 	}
 	log.Println("Database is connected")
-	return db
+	DB = db
 }

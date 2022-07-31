@@ -9,7 +9,7 @@ import (
 type User struct {
 	ID        uint           `json:"id" gorm:"primaryKey"`
 	Name      string         `json:"name"`
-	Password  string         `js1on:"password"`
+	Password  string         `json:"password"`
 	Role      constants.Role `json:"role" sql:"type:ENUM('admin','user')"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
